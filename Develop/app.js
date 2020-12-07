@@ -12,32 +12,34 @@ const render = require("./lib/htmlRenderer");
 
 const team = [];
 const ids = [];
+
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+
 function createTeam() {
-    function chooseTeam() {
-        inquirer.prompt ([
-            {
-                type: 'list',
-                message: 'Do you want to add a team member?',
-                choices: ['I do not want to add any','Engineer', 'Intern'],
-                name: 'team'
-            }
-        ])
-        .then(
-            choice => {
-                switch (choice.team){
-                    case 'Engineer': addEngineer();
-                    break;
-                    case 'Intern': addIntern();
-                    break;
-                    // default writeToFile();
-                }
+    // function chooseTeam() {
+        // inquirer.prompt ([
+        //     {
+        //         type: 'list',
+        //         message: 'Do you want to add a team member?',
+        //         choices: ['I do not want to add any','Engineer', 'Intern'],
+        //         name: 'team'
+        //     }
+        // ])
+        // .then(
+    //         choice => {
+    //             switch (choice.team){
+    //                 case 'Engineer': addEngineer();
+    //                 break;
+    //                 case 'Intern': addIntern();
+    //                 break;
+    //                 // default writeToFile();
+    //             }
             
-            }
-        )
-    }
-    function addManager() {
+    //         }
+    //     )
+    // }
+    // function addManager() {
         inquirer.prompt ([
     
             {
@@ -58,21 +60,147 @@ function createTeam() {
                 {
                 type: 'input',
                 message: 'Please enter your office number:',
-                name: 'office'
+                name: 'officeNumber'
             },
+            {
+                type: 'list',
+                message: 'Do you want to add a team member?',
+                choices: ['I do not want to add any','Engineer', 'Intern'],
+                name: 'team'
+            }
 
         ])
-        .then(data => {
-            const manager = new Manager(data.name, data.id, data.email, data.officeNumber);
-        team.push(manager);
-        ids.push(data.id);
-        chooseTeam()
-        });
+        .then(choice => {
+            switch (choice.team){
+                case 'Engineer': addEngineer();
+                break;
+                case 'Intern': addIntern();
+                break;
+                default: data => {
+                    const manager = new Manager(name, id, email, officeNumber);
+                team.push(manager);
+                ids.push(data.id);
+                }
+                // writeToFile();
+            }
+        })
+        // .then((data => {
+        //     const manager = new Manager(data.name, data.id, data.email, data.officeNumber);
+        // team.push(manager);
+        // ids.push(data.id);
+        // chooseTeam()
+        // })
+        // )};
     }
-    addManager()
-}
-createTeam()
+function addEngineer() {
+    inquirer.prompt ([
+    
+        {
+            type: 'input',
+            message: 'Please enter your name:',
+            name: 'name'
+        },
+        {
+            type: 'input',
+            message: 'Please enter your ID:',
+            name: 'id'
+        },
+        {
+            type: 'input',
+            message: 'Please enter an email:',
+            name: 'email'
+        },
+            {
+            type: 'input',
+            message: 'Please enter your Github username:',
+            name: 'github'
+        },
+        {
+            type: 'list',
+            message: 'Do you want to add a team member?',
+            choices: ['I do not want to add any','Engineer', 'Intern'],
+            name: 'team'
+        }
 
+    ])
+    .then(choice => {
+        switch (choice.team){
+            case 'Engineer': addEngineer();
+            break;
+            case 'Intern': addIntern();
+            break;
+            default: data => {
+                const engineer = new Engineer(data.name, data.id, data.email, data.github);
+            team.push(engineer);
+            ids.push(data.id);
+            }
+        }
+    })
+
+}
+function addIntern() {
+    inquirer.prompt ([
+    
+        {
+            type: 'input',
+            message: 'Please enter your name:',
+            name: 'name'
+        },
+        {
+            type: 'input',
+            message: 'Please enter your ID:',
+            name: 'id'
+        },
+        {
+            type: 'input',
+            message: 'Please enter an email:',
+            name: 'email'
+        },
+            {
+            type: 'input',
+            message: 'Please enter your associated school:',
+            name: 'school'
+        },
+        {
+            type: 'list',
+            message: 'Do you want to add a team member?',
+            choices: ['I do not want to add any','Engineer', 'Intern'],
+            name: 'team'
+        }
+
+    ])
+    .then(choice => {
+        switch (choice.team){
+            case 'Engineer': addEngineer();
+            break;
+            case 'Intern': addIntern();
+            break;
+            default: data => {
+                const intern = new Intern(data.name, data.id, data.email, data.school);
+            team.push(intern);
+            ids.push(data.id);
+            }
+        }
+    })
+
+}
+
+    // chooseTeam();
+    // addManager();
+    // addEngineer();
+
+// }
+createTeam();
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
@@ -93,5 +221,3 @@ createTeam()
 // for further information. Be sure to test out each class and verify it generates an
 // object with the correct structure and methods. This structure will be crucial in order
 // for the provided `render` function to work! ```
-
-

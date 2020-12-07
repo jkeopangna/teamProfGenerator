@@ -15,11 +15,3 @@ getRole() {
 };
 
 module.exports = Manager;
-
-// inquirer.prompt ([
-//     {
-//     type: 'input',
-//     message: 'Please enter your office number:',
-//     name: 'office'
-//     }
-// ])
