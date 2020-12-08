@@ -17,29 +17,7 @@ const ids = [];
 // and to create objects for each team member (using the correct classes as blueprints!)
 
 function createTeam() {
-    // function chooseTeam() {
-        // inquirer.prompt ([
-        //     {
-        //         type: 'list',
-        //         message: 'Do you want to add a team member?',
-        //         choices: ['I do not want to add any','Engineer', 'Intern'],
-        //         name: 'team'
-        //     }
-        // ])
-        // .then(
-    //         choice => {
-    //             switch (choice.team){
-    //                 case 'Engineer': addEngineer();
-    //                 break;
-    //                 case 'Intern': addIntern();
-    //                 break;
-    //                 // default writeToFile();
-    //             }
-            
-    //         }
-    //     )
-    // }
-    // function addManager() {
+  
         inquirer.prompt ([
     
             {
@@ -81,16 +59,16 @@ function createTeam() {
                 team.push(manager);
                 ids.push(data.id);
                 }
-                // writeToFile();
+                
+function writeToFile() {
+    fs.writeFile(outputPath, render(team), (err) =>
+    err ? console.log(err) : console.log('Success!')
+    )
+}
+writeToFile();
             }
         })
-        // .then((data => {
-        //     const manager = new Manager(data.name, data.id, data.email, data.officeNumber);
-        // team.push(manager);
-        // ids.push(data.id);
-        // chooseTeam()
-        // })
-        // )};
+
     }
 function addEngineer() {
     inquirer.prompt ([
@@ -134,6 +112,13 @@ function addEngineer() {
             team.push(engineer);
             ids.push(data.id);
             }
+            
+function writeToFile() {
+    fs.writeFile(outputPath, render(team), (err) =>
+    err ? console.log(err) : console.log('Success!')
+    )
+}
+writeToFile();
         }
     })
 
@@ -180,15 +165,17 @@ function addIntern() {
             team.push(intern);
             ids.push(data.id);
             }
+            
+function writeToFile() {
+    fs.writeFile(outputPath, render(team), (err) =>
+    err ? console.log(err) : console.log('Success!')
+    )
+}
+writeToFile();
         }
     })
 
 }
-
-    // chooseTeam();
-    // addManager();
-    // addEngineer();
-
 // }
 createTeam();
 

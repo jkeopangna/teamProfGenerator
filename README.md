@@ -14,6 +14,9 @@ A Node CLI application that builds a software engineering team with inquirer and
 4. Create classes for each member that inherit from one parent class of employee
 5. A screenshot and link are provided to preview the application
 
+[Preview](Assets/preview.jpg)<br>
+[Team Profile Generator](https://drive.google.com/file/d/1ZcTLD2t5N-xzjpwQTsY1_qZrrQR9eUqD/view)
+
 ## Technology Used
 
 - Node JS
